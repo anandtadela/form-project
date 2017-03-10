@@ -17,12 +17,42 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
         }
                
     }
-}).controller('View2Controller', function($scope, $http, $location,myService) {
+}).controller('View2Controller', function($scope, $http, $location,myService, $uibModal) {
     $scope.data1 = myService.getData();
     $scope.backToHome = function() {
         $location.path("/view1");
     }
-    $scope.getMoreInfo = function(val) {
-        alert("Val"+val);
-    }
+   
+        var $ctrl = this;
+        $ctrl.animationsEnabled = true;
+        // $ctrl.val = "";
+        $ctrl.open = function (val) {
+            $ctrl.val = val;
+            var modalInstance = $uibModal.open({
+            animation: $ctrl.animationsEnabled,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'modal-window.html',
+            controller: 'ModalInstanceCtrl',
+            controllerAs: '$ctrl',
+            resolve: {
+                    val: function () {
+                    return $ctrl.val;
+                    }
+                }
+            });
+        };
+    
+});
+
+angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($uibModalInstance, val) {
+  var $ctrl = this;
+  $ctrl.val = val;
+  $ctrl.ok = function () {
+    $uibModalInstance.close();
+  };
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
 });

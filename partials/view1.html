@@ -1,7 +1,7 @@
 
 <div ng-controller="View1Controller">
     <div>
-        <span>Enter Client name &nbsp;</span><input type="text" placeholder="Client name" ng-model="clientName" ng-change="onClientNameChange(clientName)"/>&nbsp;<button ng-click="getClientDetails()">Submit</button>
+        <span>Enter Client name &nbsp;</span><input type="text" placeholder="Client name" ng-model="clientName" ng-change="onClientNameChange(clientName)"/>&nbsp;<button ng-click="getClientDetails()" class="btn btn-primary">Submit</button>
     </div>
     <div ng-if="showErrorMsg">
        <span style="color:red">Enter client name</span>

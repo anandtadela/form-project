@@ -1,5 +1,18 @@
-<div ng-controller="View2Controller">
-        <table border="1" cellpadding="5px" cellspacing="0">
+<div ng-controller="View2Controller as $ctrl">
+    <script type="text/ng-template" id="modal-window.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <span ng-bind="$ctrl.val"></span>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </script>
+    <div class="table-responsive">
+        <table border="1" cellpadding="5px" cellspacing="0" class="table table-hover table-bordered">
             <tr>
                 <th>Name</th>
                 <th>Age</th>
@@ -10,10 +23,11 @@
                 <td ng-bind="x.name"></td>
                 <td ng-bind="x.age"></td>
                 <td ng-bind="x.city"></td>
-                <td><a href="" ng-click="getMoreInfo(x.description)">More info</a></td>
+                <td><a href="" ng-click="$ctrl.open(x.description)">More info</a></td>
             </tr>
         </table>
-        <div>
-            <button ng-click="backToHome()">Back to home</button>
-        </div>
+    </div>
+    <div>
+        <button ng-click="backToHome()" class="btn btn-primary">Back to home</button>
+    </div>
 </div>
