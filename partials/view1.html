@@ -1,5 +1,10 @@
 
 <div ng-controller="View1Controller">
-    <span>Enter Client Number</span><input type="text" placeholder="Enter client number" ng-model="clientNumber"/>
-    <button ng-click="getClientDetails()">Submit</button>
+    <div>
+        <span>Enter Client name &nbsp;</span><input type="text" placeholder="Client name" ng-model="clientName" ng-change="onClientNameChange(clientName)"/>&nbsp;<button ng-click="getClientDetails()">Submit</button>
+    </div>
+    <div ng-if="showErrorMsg">
+       <span style="color:red">Enter client name</span>
+    </div>
+    
 </div>
