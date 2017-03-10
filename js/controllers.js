@@ -22,4 +22,7 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
     $scope.backToHome = function() {
         $location.path("/view1");
     }
+    $scope.getMoreInfo = function(val) {
+        alert("Val"+val);
+    }
 });
