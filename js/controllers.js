@@ -6,17 +6,11 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
     }
     $scope.getClientDetails = function() {
         if(!!$scope.clientName) {
-             $http({
-                method: 'GET',
-                url: 'json/viewdata.json',
-                params: {client_name: $scope.clientName}
-            }).then(function (data){
-                var resultData = data.data;
-                myService.set(resultData);
-                $location.path("/view2");
-            },function (error){
-                console.log("error");
-            });
+            // Call the async method and then do stuff with what is returned inside our own then function
+             myService.getViewServiceCall($scope.clientName).then(function(d) {
+                 myService.set(d);
+             });
+             $location.path("/view2")
         } else {
             $scope.showErrorMsg = true;
             return;
@@ -24,7 +18,7 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
                
     }
 }).controller('View2Controller', function($scope, $http, $location,myService) {
-    $scope.data1 = myService.get();
+    $scope.data1 = myService.getData();
     $scope.backToHome = function() {
         $location.path("/view1");
     }
