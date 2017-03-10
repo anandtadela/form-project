@@ -1,5 +1,5 @@
 "use strict";
-angular.module('myApp.controllers', []).controller('View1Controller', function($scope, $http, $location) {
+angular.module('myApp.controllers', []).controller('View1Controller', function($scope, $http, $location,myService) {
     $scope.getClientDetails = function() {
                 $http({
                 method: 'GET',
@@ -7,13 +7,12 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
                 params: {client_number: $scope.clientNumber}
             }).then(function (data){
                 var resultData = data.data;
-                $location.path("/view2").search({views: resultData});
+                myService.set(resultData);
+                $location.path("/view2");
             },function (error){
                 console.log("error");
             });
     }
-}).controller('View2Controller', function($scope, $http, $location) {
-    // console.log("hi");
-    $scope.data1 = $location.search().views;
-
+}).controller('View2Controller', function($scope, $http, $location,myService) {
+    $scope.data1 = myService.get();
 });

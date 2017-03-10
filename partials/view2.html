@@ -1,14 +1,16 @@
 <div ng-controller="View2Controller">
-        <table>
+        <table border="1" cellpadding="5px" cellspacing="0">
             <tr>
                 <th>Name</th>
                 <th>Age</th>
                 <th>City</th>
+                <th>More info...</th>
             </tr>
             <tr ng-repeat="x in data1.views">
-                <td>{{ x.name }}</td>
-                <td>{{ x.age }}</td>
-                <td>{{ x.city }}</td>
+                <td ng-bind="x.name"></td>
+                <td ng-bind="x.age"></td>
+                <td ng-bind="x.city"></td>
+                <td><a href="" ng-click="">More info</a></td>
             </tr>
         </table>
 </div>
