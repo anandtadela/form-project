@@ -45,6 +45,16 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
     
 });
 
+angular.module("myApp").controller('MenuCntrl',function($scope) {
+   
+  $scope.menuItemClick = function($event) {
+      var parentEle = angular.element($event.target).parent();
+       parentEle.hasClass("open") === true ? parentEle.removeClass("open") : parentEle.addClass("open");      
+  }
+  
+});
+
+
 angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($uibModalInstance, val) {
   var $ctrl = this;
   $ctrl.val = val;

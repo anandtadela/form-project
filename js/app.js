@@ -1,8 +1,9 @@
 "use strict";
 angular.module('myApp',[
 'ngRoute',
-'myApp.controllers',
-'ui.bootstrap'
+'ui.bootstrap',
+'myApp.controllers'
+
 ]).config(function($routeProvider, $locationProvider){
     $routeProvider.when('/view1',{
     templateUrl:'/partials/view1.html'
