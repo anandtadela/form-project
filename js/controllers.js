@@ -50,6 +50,12 @@ angular.module("myApp").controller('MenuCntrl',function($scope) {
   $scope.menuItemClick = function($event) {
       var parentEle = angular.element($event.target).parent();
        parentEle.hasClass("open") === true ? parentEle.removeClass("open") : parentEle.addClass("open");      
+  };
+  $scope.toggleNavBar = function($event) {
+      var parentEle = angular.element($event.target);
+      var sidebarEle = angular.element(document.querySelector("#bs-sidebar-navbar-collapse-1"));
+      parentEle.hasClass("collapsed") === true ? parentEle.removeClass("collapsed") : parentEle.addClass("collapsed"); 
+      sidebarEle.hasClass("in") === true ? sidebarEle.removeClass("in") : sidebarEle.addClass("in"); 
   }
   
 });
