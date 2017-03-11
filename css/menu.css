@@ -153,10 +153,6 @@
     ul.collapse{
         display:none !important;
     }
-    @keyframes showNav {
-        from {opacity: 0;}
-        to {opacity: 1;}
-    }
     .dropdown {
         max-height: 50px;
     }
