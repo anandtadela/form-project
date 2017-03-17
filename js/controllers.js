@@ -8,7 +8,7 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
         if(!!$scope.clientName) {
             // Call the async method and then do stuff with what is returned inside our own then function
              myService.getViewServiceCall($scope.clientName).then(function(d) {
-                 myService.set(d);
+                 myService.set(d.data);
                  $location.path("/view2")
              });
              
@@ -68,8 +68,8 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
             // Call the async method and then do stuff with what is returned inside our own then function
              myService.saveRequestDetails(requestObj).then(function(d) {
                  resetForm();
-                 d.errorList.length === 0 ? $scope.showSuccessMsg = true : $scope.showErrorMsg = true;
-                 (d.errorList.length > 0 ) ? $scope.errorMsg = d.errorList[0].errorMessage : $scope.errorMsg = "";
+                 d.data.errorList.length === 0 ? $scope.showSuccessMsg = true : $scope.showErrorMsg = true;
+                 (d.data.errorList.length > 0 ) ? $scope.errorMsg = d.errorList[0].errorMessage : $scope.errorMsg = "";
              });
         } else {
             $scope.showErrorMsg = true;

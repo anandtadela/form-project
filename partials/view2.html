@@ -11,7 +11,11 @@
             <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
         </div>
     </script>
-    <div class="main"> 
+    <div class="main">
+         <div class="form-group">
+            <label for="clientName">Search by client name</label>
+            <input type="text" class="form-control" ng-model="search.client" placeholder="Client name"  aria-describedby="clientNameHelp"  />
+        </div>
         <div class="table-responsive">
             <table border="1" cellpadding="5px" cellspacing="0" class="table table-hover table-bordered">
                 <tr>
@@ -22,7 +26,7 @@
                 </tr>
 
                 
-                <tr ng-repeat="x in data1.mockDataList">
+                <tr ng-repeat="x in data1.mockDataList | filter:search">
                     <td ng-bind="x.client"></td>
                     <td><a href="" ng-click='$ctrl.open(x.request, "Request")'><span ng-bind="x.request | limitTo:10"></span>
                          <span ng-if="x.request.length > 10">...</span></a></td>

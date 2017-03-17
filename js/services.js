@@ -6,37 +6,23 @@ app.factory('myService', function( $http) {
  }
  function getViewServiceCall(clientName) {
         // $http returns a promise, which has a then function, which also returns a promise
-        if ( !promise ) {
+        //http://10.8.94.49:8888/getmockdatalist?clientName=foot 
           promise = $http({
               method: 'GET',
-              url: 'http://10.8.94.49:8888/getmockdatalist',
+              url: 'json/realdata.json',
               params: {clientName: clientName}
-          }).then(function (response) {
-            // The then function here is an opportunity to modify the response
-            console.log(response);
-            // The return value gets picked up by the then in the controller.
-            return response.data;
           });
-        }
       // Return the promise to the controller
       return promise;
  }
 
- function saveRequestDetails(requestObj) {
-     
-      if ( !promise ) {
+ function saveRequestDetails(requestObj) { 
         // $http returns a promise, which has a then function, which also returns a promise
         promise = $http({
             method: 'POST',
             url: 'http://10.8.94.49:8888/savemockdata',
             data: {request: requestObj.request, response:requestObj.response, contenttype:requestObj.contentTtype, client:requestObj.clientName}
-        }).then(function (response) {
-          // The then function here is an opportunity to modify the response
-          console.log(response);
-          // The return value gets picked up by the then in the controller.
-          return response.data;
         });
-      }
       // Return the promise to the controller
       return promise;
  }

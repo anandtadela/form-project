@@ -1,11 +1,15 @@
 
 <div ng-controller="View1Controller">
+    <div class="form-group">
+        <label for="clientName">Enter Client name*</label>
+        <input type="text" class="form-control" ng-model="clientName" placeholder="Client name" ng-change="onClientNameChange(clientName)"  aria-describedby="clientNameHelp"  />
+        <div ng-if="showErrorMsg">
+            <span style="color:red">Enter client name</span>
+        </div>
+    </div>
     <div>
-        <span>Enter Client name &nbsp;</span><input type="text" placeholder="Client name" ng-model="clientName" ng-change="onClientNameChange(clientName)"/>&nbsp;<button ng-click="getClientDetails()" class="btn btn-primary">Submit</button>
+        <button ng-click="getClientDetails()" class="btn btn-primary">Submit</button>  <a href="/default" role="button" class="btn btn-primary">Back to home</a>
     </div>
-    <div ng-if="showErrorMsg">
-       <span style="color:red">Enter client name</span>
-    </div>
-    <a href="/default" role="button" class="btn btn-primary">Back to home</a>
+   
     
 </div>
