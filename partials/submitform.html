@@ -1,0 +1,32 @@
+ <div ng-controller="FormController">
+ <div ng-if="showErrorMsg">
+       <span style="color:red" ng-bind="errorMsg">Enter mandatory fields</span>
+    </div>
+<div ng-if="showSuccessMsg">
+       <span style="color:green">Request Submitted sucessfully.</span>
+    </div>
+<form>
+  <div class="form-group">
+    <label for="clientName">Client name*</label>
+    <input type="text" class="form-control" id="clientName" ng-model="clientName" aria-describedby="clientNameHelp" placeholder="Client name" />
+  </div>
+  <div class="form-group" autocomplete="off">
+    <label for="contentType">Content type*</label>
+    <select ng-model="contentsType" class="form-control"
+        ng-options="item.id as item.name for item in contents" 
+        >
+        <option value="">Choose conent type</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="requestTextArea">Request textarea*</label>
+    <textarea class="form-control" id="requestTextArea" rows="3" ng-model="request"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="responseTextArea">Response textarea*</label>
+    <textarea class="form-control" id="responseTextArea" rows="3" ng-model="response"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="SubmitForm()">Submit</button>
+  <button ng-click="backToHome()" class="btn btn-primary">Back to home</button>
+</form>
+</div>

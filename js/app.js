@@ -6,10 +6,15 @@ angular.module('myApp',[
 ]).config(function($routeProvider, $locationProvider){
     $routeProvider.when('/view1',{
     templateUrl:'/partials/view1.html'
-}).when('/view2',{
+    }).when('/default',{
+        templateUrl:'/partials/default.html'
+    }).when('/view2',{
     templateUrl:'/partials/view2.html',
     reloadOnSearch: false 
-    }).otherwise({redirectTo:'/view1'});
+    }).when('/submitform',{
+    templateUrl:'/partials/submitform.html',
+    reloadOnSearch: false 
+    }).otherwise({redirectTo:'/default'});
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: false

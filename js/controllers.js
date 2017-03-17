@@ -19,15 +19,11 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
     }
 }).controller('View2Controller', function($scope, $http, $location,myService, $uibModal) {
     $scope.data1 = myService.getData();
-    $scope.backToHome = function() {
-        $location.path("/view1");
-    }
-   
         var $ctrl = this;
         $ctrl.animationsEnabled = true;
-        // $ctrl.val = "";
-        $ctrl.open = function (val) {
+        $ctrl.open = function (val,modalTitle) {
             $ctrl.val = val;
+            $ctrl.modalTitle = modalTitle;
             var modalInstance = $uibModal.open({
             animation: $ctrl.animationsEnabled,
             ariaLabelledBy: 'modal-title',
@@ -38,16 +34,57 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
             resolve: {
                     val: function () {
                     return $ctrl.val;
+                    },
+                    modalTitle: function() {
+                        return $ctrl.modalTitle;
                     }
                 }
             });
         };
     
+}).controller('FormController', function($scope, myService, $location) {
+   $scope.contents =      [
+    {
+        id: 'application/json',
+        name: 'Application'
+    },
+    {
+        id: 'application/xml',
+        name: 'XML'
+    }
+    ];
+    $scope.SubmitForm = function () {
+        $scope.errorMsg = "Enter mandatory fields";
+        var requestObj = {
+            clientName:$scope.clientName,
+            request:$scope.request,
+            response:$scope.response,
+            contentTtype:$scope.contentsType
+
+        };
+
+        if(!!$scope.clientName && !!$scope.request && !!$scope.response) {
+            // Call the async method and then do stuff with what is returned inside our own then function
+             myService.saveRequestDetails(requestObj).then(function(d) {
+                 resetForm();
+                 d.errorList.length === 0 ? $scope.showSuccessMsg = true : $scope.showErrorMsg = true;
+                 (d.errorList.length > 0 ) ? $scope.errorMsg = d.errorList[0].errorMessage : $scope.errorMsg = "";
+             });
+        } else {
+            $scope.showErrorMsg = true;
+            return;
+        }
+
+    };
+     function resetForm() {
+        $scope.clientName =""; $scope.request = ""; $scope.response = "";
+    }
 });
 
-angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($uibModalInstance, val) {
+angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($uibModalInstance, val, modalTitle) {
   var $ctrl = this;
   $ctrl.val = val;
+  $ctrl.modalTitle = modalTitle;
   $ctrl.ok = function () {
     $uibModalInstance.close();
   };
