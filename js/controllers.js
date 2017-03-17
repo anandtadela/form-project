@@ -44,7 +44,7 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
         };
     
 }).controller('FormController', function($scope, myService, $location) {
-   $scope.contents =      [
+   $scope.contents = [
     {
         id: 'application/json',
         name: 'Application'
@@ -80,6 +80,13 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
      function resetForm() {
         $scope.clientName =""; $scope.request = ""; $scope.response = "";
     }
+}).controller('NavController', function($scope, myService, $location) {
+    $scope.getActiveClass = function(path) {
+        return ($location.path().substr(0, path.length) === path) ? 'active' : '';
+    };
+     $scope.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
 });
 
 angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($uibModalInstance, val, modalTitle) {
