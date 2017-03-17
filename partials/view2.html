@@ -14,16 +14,16 @@
     <div class="table-responsive">
         <table border="1" cellpadding="5px" cellspacing="0" class="table table-hover table-bordered">
             <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>City</th>
-                <th>More info...</th>
+                <th>Client</th>
+                <th>Request</th>
+                <th>Request id</th>
+                <th>Response</th>
             </tr>
-            <tr ng-repeat="x in data1.views">
-                <td ng-bind="x.name"></td>
-                <td ng-bind="x.age"></td>
-                <td ng-bind="x.city"></td>
-                <td><a href="" ng-click="$ctrl.open(x.description)">More info</a></td>
+            <tr ng-repeat="x in data1.mockDataList">
+                <td ng-bind="x.client"></td>
+                <td ng-bind="x.request"></td>
+                <td ng-bind="x.requestid"></td>
+                <td><a href="" ng-click="$ctrl.open(x.description)" ng-bind="x.response"></a></td>
             </tr>
         </table>
     </div>

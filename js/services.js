@@ -10,8 +10,8 @@ app.factory('myService', function( $http) {
         // $http returns a promise, which has a then function, which also returns a promise
         promise = $http({
             method: 'GET',
-            url: 'json/viewdata.json',
-            params: {client_name: clientName}
+            url: 'json/realdata.json',
+            params: {clientName: clientName}
         }).then(function (response) {
           // The then function here is an opportunity to modify the response
           console.log(response);
