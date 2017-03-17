@@ -9,7 +9,7 @@ app.factory('myService', function( $http) {
         //http://10.8.94.49:8888/getmockdatalist?clientName=foot 
           promise = $http({
               method: 'GET',
-              url: 'json/realdata.json',
+              url: 'json/realdata1.json',
               params: {clientName: clientName}
           });
       // Return the promise to the controller

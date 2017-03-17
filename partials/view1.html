@@ -11,7 +11,9 @@
         <button ng-click="getClientDetails()" class="btn btn-primary" type="submit">Submit</button> 
          <!--<a href="/default" role="button" class="btn btn-primary">Back to home</a>-->
     </div>
-   
-
+    <div ng-if="showBanner">
+        <flyout-message errormsg="errorMsg" text="default" type="error" autodismiss="false">
+        </flyout-message>
+   </div>
     
 </div>

@@ -10,6 +10,9 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
              myService.getViewServiceCall($scope.clientName).then(function(d) {
                  myService.set(d.data);
                  $location.path("/view2")
+             }, function(error) {
+                $scope.showBanner = true;
+                $scope.errorMsg =error.statusText;
              });
              
         } else {
