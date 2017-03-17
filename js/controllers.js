@@ -9,8 +9,9 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
             // Call the async method and then do stuff with what is returned inside our own then function
              myService.getViewServiceCall($scope.clientName).then(function(d) {
                  myService.set(d);
+                 $location.path("/view2")
              });
-             $location.path("/view2")
+             
         } else {
             $scope.showErrorMsg = true;
             return;
