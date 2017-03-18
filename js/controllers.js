@@ -72,14 +72,10 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
             // Call the async method and then do stuff with what is returned inside our own then function
              myService.saveRequestDetails(requestObj).then(function(d) {
                  if(!!d.data && d.data.errorList.length === 0) {
-                    $scope.showBanner = true;
-                    $scope.bannerText = "Request Submitted sucessfully.";
-                    $scope.bannerType = "success";
-                    resetForm();
+                   showBanner('success', "Request Submitted sucessfully.");
+                   resetForm();
                  } else {
-                    $scope.showBanner = true;
-                    $scope.bannerText = d.errorList[0].errorMessage;
-                    $scope.bannerType = "error";
+                    showBanner('error', d.errorList[0].errorMessage);
                  }
              });
         } else {
@@ -88,6 +84,11 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
         }
 
     };
+    function showBanner(type, msg) {
+          $scope.bannerText = msg;
+          $scope.bannerType = type;
+          $scope.showBanner = true;
+    }
      function resetForm() {
         $scope.clientName =""; $scope.request = ""; $scope.response = "";
     }
