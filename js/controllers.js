@@ -12,7 +12,8 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
                  $location.path("/view2")
              }, function(error) {
                 $scope.showBanner = true;
-                $scope.errorMsg =error.statusText;
+                $scope.bannerText = error.statusText;
+                $scope.bannerType = "error";
              });
              
         } else {
@@ -70,9 +71,16 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
         if(!!$scope.clientName && !!$scope.request && !!$scope.response) {
             // Call the async method and then do stuff with what is returned inside our own then function
              myService.saveRequestDetails(requestObj).then(function(d) {
-                 resetForm();
-                 d.data.errorList.length === 0 ? $scope.showSuccessMsg = true : $scope.showErrorMsg = true;
-                 (d.data.errorList.length > 0 ) ? $scope.errorMsg = d.errorList[0].errorMessage : $scope.errorMsg = "";
+                 if(!!d.data && d.data.errorList.length === 0) {
+                    $scope.showBanner = true;
+                    $scope.bannerText = "Request Submitted sucessfully.";
+                    $scope.bannerType = "success";
+                    resetForm();
+                 } else {
+                    $scope.showBanner = true;
+                    $scope.bannerText = d.errorList[0].errorMessage;
+                    $scope.bannerType = "error";
+                 }
              });
         } else {
             $scope.showErrorMsg = true;

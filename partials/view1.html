@@ -12,7 +12,7 @@
          <!--<a href="/default" role="button" class="btn btn-primary">Back to home</a>-->
     </div>
     <div ng-if="showBanner">
-        <flyout-message errormsg="errorMsg" text="default" type="error" autodismiss="false">
+        <flyout-message text="{{bannerText}}" type="{{bannerType}}" autodismiss="false">
         </flyout-message>
    </div>
     

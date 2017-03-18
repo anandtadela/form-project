@@ -5,11 +5,12 @@ angular
             restrict: "E",
             replace:true,
             scope: {
-                'errormsg': '='
+                'text': '@',
+                'type':'@'
             },
             templateUrl: 'partials/error-banner.html',
             link: function (scope, elem, attrs) {
-                 scope.error = scope.errormsg ;
+                 scope.error = attrs.text ;
                 attrs.type === 'error' ? elem.addClass('redbg') : elem.addClass('greenbg');
                 attrs.autodismiss === "true" ? setTimeout(function() {scope.showBanner = false},100):scope.showBanner = true;
                 scope.closeBanner = function() {
