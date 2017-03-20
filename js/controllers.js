@@ -22,6 +22,9 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
         }
                
     }
+    $scope.closeBanner = function() {
+        $scope.showBanner = false;
+    }
 }).controller('View2Controller', function($scope, $http, $location,myService, $uibModal) {
     $scope.data1 = myService.getData();
         var $ctrl = this;
