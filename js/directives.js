@@ -6,7 +6,8 @@ angular
             replace:true,
             scope: {
                 'text': '@',
-                'type':'@'
+                'type':'@',
+                'showbanner':'='
             },
             templateUrl: 'partials/error-banner.html',
             link: function (scope, elem, attrs) {

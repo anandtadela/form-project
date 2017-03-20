@@ -51,7 +51,7 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
    $scope.contents = [
     {
         id: 'application/json',
-        name: 'Application'
+        name: 'JSON'
     },
     {
         id: 'application/xml',
@@ -75,7 +75,7 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
                    showBanner('success', "Request Submitted sucessfully.");
                    resetForm();
                  } else {
-                    showBanner('error', d.errorList[0].errorMessage);
+                    showBanner('error', d.data.errorList[0].errorMessage);
                  }
              });
         } else {
@@ -86,11 +86,15 @@ angular.module('myApp.controllers', []).controller('View1Controller', function($
     };
     function showBanner(type, msg) {
           $scope.bannerText = msg;
-          $scope.bannerType = type;
+          var ele = document.querySelector('.error-banner');
+          type === 'error' ? angular.element(ele.classList.add("redbg")): angular.element(ele.classList.add("greenbg"));
           $scope.showBanner = true;
     }
      function resetForm() {
         $scope.clientName =""; $scope.request = ""; $scope.response = "";
+    }
+   $scope.closeBanner = function() {
+        $scope.showBanner = false;
     }
 }).controller('NavController', function($scope, myService, $location) {
     $scope.getActiveClass = function(path) {
